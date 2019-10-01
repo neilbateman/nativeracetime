@@ -1,12 +1,13 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-
+import ListDisplay from '../components/ListDisplay';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import TimerScreen from '../screens/TimerScreen';
+import ListScreen from '../screens/ListScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -45,7 +46,9 @@ const LinksStack = createStackNavigator(
 
 LinksStack.navigationOptions = {
   tabBarLabel: 'Links',
+ 
   tabBarIcon: ({ focused }) => (
+    <ListDisplay/>,
     <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
   ),
 };
@@ -84,11 +87,28 @@ TimerStack.navigationOptions = {
 
 TimerStack.path = '';
 
+const ListStack = createStackNavigator(
+  {
+    List: ListScreen,
+  },
+  config
+);
+
+ListStack.navigationOptions = {
+  tabBarLabel: 'List',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+  ),
+};
+
+ListStack.path = '';
+
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
   TimerStack,
+  ListStack
 });
 
 tabNavigator.path = '';

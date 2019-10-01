@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import TodoList from '../components/TodoList';
 
 import { MonoText } from '../components/StyledText';
 
@@ -23,12 +24,11 @@ export default function HomeScreen() {
         </View>
 
         <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
 
-
+          <TodoList/>
           <View
             style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-            <MonoText>Hello</MonoText>
+            <MonoText></MonoText>
           </View>
 
         </View>
@@ -36,18 +36,6 @@ export default function HomeScreen() {
         
       </ScrollView>
 
-      <View style={styles.tabBarInfoContainer}>
-        <Text style={styles.tabBarInfoText}>
-          This is a tab bar. You can edit it in:
-        </Text>
-
-        <View
-          style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-          <MonoText style={styles.codeHighlightText}>
-            navigation/MainTabNavigator.js
-          </MonoText>
-        </View>
-      </View>
     </View>
   );
 }
@@ -177,5 +165,14 @@ const styles = StyleSheet.create({
   helpLinkText: {
     fontSize: 14,
     color: '#2e78b7',
+  },
+  list: {
+    flex: 1,
+    marginTop: 70,
+    paddingLeft: 15,
+    marginBottom: 10
+  },
+  scrollableList: {
+    marginTop: 15
   },
 });
